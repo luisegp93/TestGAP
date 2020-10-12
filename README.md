@@ -3,7 +3,9 @@ Test project for GAP
 
 ############################ Instructions ######################################
 
-To run the test please execute the next commands from a bash or any other linux console (won't work on CMD)
+please execute the command: "npm i" in the root directory (with CMD or bash) of this project to install all dependencies (node_modules folder is exclude due to .gitignore file)
+
+To run the test please execute the next command from a bash or any other linux console (won't work on CMD)
 
 ./node_modules/.bin/wdio ./wdio.conf.js
 
