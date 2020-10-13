@@ -8,6 +8,7 @@ exports.config = {
   // on a remote machine).
   runner: "local",
   //
+  sync: true,
   // ==================
   // Specify Test Files
   // ==================
@@ -65,6 +66,7 @@ exports.config = {
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
   logLevel: "warn",
+  sync: true,
   //
   // Set specific log levels per logger
   // loggers:
@@ -140,7 +142,7 @@ exports.config = {
     profile: [], // <string[]> (name) specify the profile to use
     strict: false, // <boolean> fail if there are any undefined or pending steps
     tags: [], // <string[]> (expression) only execute the features or scenarios with tags matching the expression
-    timeout: 60000, // <number> timeout for step definitions
+    timeout: 600000, // <number> timeout for step definitions
     ignoreUndefinedDefinitions: false // <boolean> Enable this config to treat undefined definitions as warnings.
   },
 

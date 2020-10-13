@@ -1,16 +1,36 @@
 import userListPage from "../../page_object/UserList";
 import assert from "assert";
 
-export default () => {
-    userListPage.deletes();
-    browser.acceptAlert();
-    userListPage.searchResultTable.forEach(link => {
-        const linkText = link.getText();
-        if (linkText) {
-          assert(
-            !linkText.includes("Luis Garcia"),
-            `Link ${linkText} does not include "Luis Garcia"`
-          );
-        }
-      });
+const actionOnRowData = (action) => {
+  const rows = userListPage.searchResultTable;
+  rows.forEach((row,rowIndex) => {
+    const rowData = row.$$('td');
+    rowData.forEach((column, columnIndex) => {
+      action(column, rowIndex, columnIndex)
+    })
+  });
 }
+
+export default () => {
+  actionOnRowData((column, rowIndex, columnIndex) => {
+    if (columnIndex === 3) {
+      const leaderName = column.getText();
+      if (leaderName.includes("Luis Garcia")) {
+        userListPage.deletes(rowIndex+1);
+        console.log("Usuario creado en fila:", rowIndex);
+        browser.acceptAlert();
+      }
+    }
+  })
+  actionOnRowData((column, rowIndex, columnIndex) => {
+    if (columnIndex === 3) {
+      console.log(column.getText());
+      const leaderName = column.getText();
+      assert(
+        !leaderName.includes("Luis Garcia"),
+        `Link ${leaderName} does not include "Luis Garcia"`
+      );
+    }
+  })
+}
+
